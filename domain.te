@@ -469,6 +469,7 @@ neverallow {
   -system_app
   -init
   -installd # for relabelfrom and unlink, check for this in explicit neverallow
+  -hcfsapid
 } system_data_file:file no_w_file_perms;
 # do not grant anything greater than r_file_perms and relabelfrom unlink
 # to installd
@@ -520,6 +521,8 @@ neverallow {
   -init
   -shell
   -vold
+  -hcfsd
+  -hcfsapid
 } shell_data_file:dir no_w_dir_perms;
 
 neverallow {
@@ -530,6 +533,8 @@ neverallow {
   -init
   -installd
   -system_server # why?
+  -hcfsd
+  -hcfsapid
   userdebug_or_eng(`-uncrypt')
 } shell_data_file:dir { open search };
 
@@ -541,6 +546,8 @@ neverallow {
   -appdomain
   -dumpstate
   -installd
+  -hcfsd
+  -hcfsapid
   userdebug_or_eng(`-uncrypt')
 } shell_data_file:file open;
 
@@ -578,6 +585,7 @@ neverallow {
   -recovery
   -sdcardd
   -vold
+  -hcfsd
 } fuse_device:chr_file open;
 neverallow {
   domain
@@ -589,6 +597,7 @@ neverallow {
   -system_server
   -ueventd
   -vold
+  -hcfsd
 } fuse_device:chr_file *;
 
 # Profiles contain untrusted data and profman parses that. We should only run
